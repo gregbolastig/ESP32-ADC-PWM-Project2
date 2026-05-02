@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "author": "Christian Greg Bolastig",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -68.5, "left": -125, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -51.6, "left": 167, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 60.8,
+      "left": 221.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": 185,
+      "left": 220.2,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:4", "led1:A", "green", [ "h100.84" ] ],
+    [ "ntc1:VCC", "esp:5V", "red", [ "h19.2", "v-57.6", "h-249.6", "v86.4", "h-115.2", "v-9.6" ] ],
+    [ "ldr1:GND", "esp:GND.2", "black", [ "h19.2", "v-10" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "h-47.6", "v38.4" ] ],
+    [ "ldr1:VCC", "ntc1:VCC", "red", [ "h9.6", "v124.8" ] ],
+    [ "ntc1:GND", "ldr1:GND", "black", [ "h57.6", "v-96" ] ],
+    [ "esp:34", "pot1:SIG", "green", [ "h-91.01", "v-9.6" ] ],
+    [ "pot1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "pot1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:35", "ldr1:AO", "green", [ "h-43.01", "v-144", "h480", "v48" ] ],
+    [ "esp:32", "ntc1:OUT", "green", [ "h-33.41", "v-144", "h489.6", "v288", "h-9.6" ] ]
+  ],
+  "dependencies": {}
+}
